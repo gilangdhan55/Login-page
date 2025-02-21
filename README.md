@@ -1,2 +1,3 @@
-# Login-page
-Login page with react first time use react js + tailwind with vite
+# Login page with react + vite and tailwind css
+
+Ini adalah login page yang dibuat menggunakan react js with vite dan tailwind css. 
