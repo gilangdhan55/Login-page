@@ -1,6 +1,10 @@
 import { useState } from 'react';  
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import ButtonLogin from './ButtonLogin';
+import { useNavigate } from "react-router-dom";
+import LoadingBar from "../loading/LoadingBar";
 
 const fetchData = async (api, config) => {
     try {
@@ -16,12 +20,17 @@ const fetchData = async (api, config) => {
 const Form = () => {
     const [valueUser, setValueUser]           = useState('');
     const [valuePassword, setValuePassword]   = useState('');
-    const [show, setShow] = useState(false);
+    const [show, setShow]                     = useState(false); 
   
+    const navigate = useNavigate();
+
     const handleLogin = async () => {
       if(!valueUser || !valuePassword){
-        alert('Silahkan Isi semua nya');
-        return;
+            toast.info(`silahakan isi username dan password!!`, {
+              position: 'top-center',
+              autoClose: 1500
+          }); 
+          return;
       }
   
       const config   = {
@@ -36,31 +45,30 @@ const Form = () => {
         credentials: "include" 
       }
   
-      const {res, status} = await fetchData('http://103.169.73.3:3000/api/login', config); 
-  
-      if(status === 200){
-        
-         return;
-      }
-  
-      if(!res.status){
-        alert(res.message);
+      const {res, status} = await fetchData('http://192.168.184.76:3000/api/login', config); 
+      
+      if(status === 404 || !res.status ){
+        toast.error(res.message, {
+            position: 'top-right',
+            autoClose: 1500
+        }); 
         return;
       } 
-    }
+      
+      toast.success('Data berhasil disimpan!', {
+          position: 'top-right',
+          autoClose: 1500,
+          onClose: () => {
+            <LoadingBar />;
+            navigate("/landing")
+          }
+      });
+      return;
   
-    const handleLoad = async () => {
-      const config   = {
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: "include"
-      } 
-      const response = await fetchData('http://103.169.73.3:3000/sftp/list_customers', config); 
     }
-
+    
     return (
+      <>
         <form className="w-full">
         <div className="relative mb-3"> 
           <input
@@ -93,6 +101,8 @@ const Form = () => {
         
         <ButtonLogin handleLogin={handleLogin} /> 
       </form>
+      <ToastContainer  />
+      </>
     );
 }
 
