@@ -7,6 +7,11 @@ export default defineConfig({
   server: {
       host: true,  // Agar bisa diakses pakai IP
       port: 5173,  // Bisa diganti sesuai kebutuhan
+  },
+  resolve: {
+    alias: { 
+        '@tabler/icons-react': '@tabler/icons-react/dist/esm/icons/index.mjs',
+    }
   }
   // server: {
   //   proxy: {

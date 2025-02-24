@@ -1,6 +1,6 @@
 import { useState } from "react"; 
-import { motion } from "framer-motion";
-
+import { motion } from "framer-motion"; 
+import { useNavigate } from "react-router-dom";
 const cards = [
     "https://picsum.photos/200/300?random=1",
     "https://picsum.photos/200/300?random=2",
@@ -15,6 +15,7 @@ const cards = [
 ];
 
 const ContentCarousel = () => { 
+    const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(4);  
     const nextSlide = () => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % cards.length);
@@ -27,15 +28,21 @@ const ContentCarousel = () => {
     };
 
     const handleClick = (index) => {
-    setActiveIndex(index);
+      setActiveIndex(index);
     };
+
+    const directURL = () => {
+      navigate("/action-plan");
+    }
+
     return (
-        <div className="container mt-5 mx-auto w-full lg:w-3/4 flex justify-center item-center">
-            <div className="relative w-[40%] h-full bg-slate-900 rounded-lg text-ellipsis text-white px-0 py-6 shadow h-80">
-                <p className="font-semibold text-2xl italic mb-5">PT Pandurasa Kharisma</p> 
-                <p className="font-sans text-justify">is one of leading importer & distributor of consumer goods specialized in Indonesian markets. Since 1992 we are serving institutional & retail sectors,with leading local and global brands to elevate their market positions in Indonesia for the long-run. We are composed by a team of professional located throughout region,creating a combined network that allows us to serve as a penetrating platform for companies interested in developing their brand/products in our region. </p>
+        // <div className="container mt-5 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-6">
+          
+        <div className="container mt-5 w-full max-w-none flex justify-center item-center h-96  lg:flex-row flex-col mx-auto"> 
+            <div className=" relative w-full h-full lg:w-[40%] backdrop-blur opacity-50 rounded-lg text-ellipsis text-white py-6 shadow flex flex-col items-center justify-center px-6"> 
+                <blockquote className="font-sans text-justify italic"><span className="font-semibold text-2xl ">PT Pandurasa Kharisma</span> is one of leading importer & distributor of consumer goods specialized in Indonesian markets. Since 1992 we are serving institutional & retail sectors,with leading local and global brands to elevate their market positions in Indonesia for the long-run. We are composed by a team of professional located throughout region,creating a combined network that allows us to serve as a penetrating platform for companies interested in developing their brand/products in our region.</blockquote>
             </div>
-            <div className="relative flex overflow-hidden gap-4 px-12 py-6 justify-center w-[50%]  h-96 max-w-2xl">
+            <div className="flex overflow-hidden gap-4 px-0  py-6 justify-center lg:w-[40%] w-full h-full">
                 {cards.map((image, i) => {
                     let position = (i - activeIndex + cards.length) % cards.length;
                     if (position > cards.length / 2) position -= cards.length;
@@ -51,20 +58,20 @@ const ContentCarousel = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity, scale, x: translateX }}
                         transition={{ duration: 0.5 }}
-                        className="absolute w-52 h-80 border border-slate-200 rounded-lg shadow-md bg-cover bg-center cursor-pointer"
+                        className={`absolute w-40 md:w-52  md:h-80 h-72 border border-slate-200 rounded-lg shadow-md bg-cover bg-center cursor-pointer ${opacity === 0 ? 'hidden' : ''} `}
                         style={{
                           backgroundImage: `url(${image})`,
                           zIndex,
                         }}
                         drag="x"
-                        dragConstraints={{ left: -1000, right: 1000 }} // Bebasin drag
+                        dragConstraints={{ left: -1000, right: 1000 }} 
                         onDragEnd={(event, info) => {
-                          if (info.velocity.x < -20) nextSlide(); // Swipe ke kanan
-                          if (info.velocity.x > 20) prevSlide(); // Swipe ke kiri
+                          if (info.velocity.x < -20) nextSlide(); 
+                          if (info.velocity.x > 20) prevSlide(); 
                         }}
                         onClick={() => handleClick(i)}
                       >
-                        <div className={`w-full ${activeIndex === i ? '' : 'bg-white/40'} rounded m-auto backdrop h-full relative flex justify-center`}>
+                        <div className={`w-full ${activeIndex === i ? 'bg-white/50' : 'bg-white/20'} rounded m-auto backdrop h-full relative flex justify-center`} onClick={activeIndex === i ? () => directURL() : undefined}                        >
                             <span className="font-sans font-bold mt-5 text-sky-400">APP {i}</span>
                         </div>
                       </motion.div>

@@ -32,3 +32,86 @@
 
     animation: typing 3s steps(28, end) forwards ,  text-color-change 1s 3s forwards;
 } 
+
+:root.dashboard-action-plan.is-collapse #sidebar {
+    width: 4.375rem;
+}
+
+:root.dashboard-action-plan.is-collapse.collapse-hover #sidebar {
+    width: 16.25rem;
+}
+
+:root.dashboard-action-plan.is-collapse #sidebar #app-header #app-text { 
+    display: none;
+}
+
+:root.dashboard-action-plan.is-collapse.collapse-hover #sidebar #app-header #app-text { 
+    display: block;
+}
+
+:root.dashboard-action-plan.is-collapse #sidebar #app-header button[aria-expanded="false"] {
+    display: none;
+}
+
+:root.dashboard-action-plan.is-collapse.collapse-hover #sidebar #app-header button[aria-expanded="true"] {
+    display: block;
+}
+
+:root.dashboard-action-plan.is-collapse #sidebar .menu-inner .menu-item .menu-link .menu-text {
+    display: none;
+}
+
+:root.dashboard-action-plan.is-collapse.collapse-hover #sidebar .menu-inner .menu-item .menu-link .menu-text {
+    display: block;
+}
+
+:root.dashboard-action-plan #sidebar .menu-inner::-webkit-scrollbar{
+    width: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+:root.dashboard-action-plan #sidebar .menu-inner:hover::-webkit-scrollbar{
+    /* width: 20px; */
+    opacity: 1;
+}
+:root.dashboard-action-plan #sidebar .menu-inner::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+    width: 2px;
+}
+:root.dashboard-action-plan #sidebar .menu-inner::-webkit-scrollbar-thumb { 
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+:root.dashboard-action-plan #sidebar .menu-inner:hover::-webkit-scrollbar-thumb {
+    background: #888;
+    opacity: 1;
+    border-radius: 5px;
+    width: 2px;
+}
+
+
+:root.dashboard-action-plan.is-collapse:not(.collapse-hover) #sidebar .menu-inner .menu-header::before{
+    content: "";
+    position: absolute;
+    left: 1.5rem;
+    height: 1px;
+    width: 1.375rem;
+    background-color: #e6e6e8;
+    transition: opacity 0.3sease, transform 0.3sease;
+}
+
+:root.dashboard-action-plan.is-collapse #sidebar .menu-inner .menu-header .menu-header-text{
+    opacity: 0;
+    transform: translateX(50px);
+}
+:root.dashboard-action-plan.is-collapse.collapse-hover #sidebar .menu-inner .menu-header .menu-header-text{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+.menu-link.active {
+    background: linear-gradient(270deg, rgba(115, 103, 240, 0.7) 0%, #7367f0 100%);
+    box-shadow: 0px 2px 6px 0px rgba(115, 103, 240, .3);
+}

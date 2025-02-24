@@ -5,6 +5,8 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import ButtonLogin from './ButtonLogin';
 import { useNavigate } from "react-router-dom";
 import LoadingBar from "../loading/LoadingBar";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const fetchData = async (api, config) => {
     try {
@@ -45,7 +47,7 @@ const Form = () => {
         credentials: "include" 
       }
   
-      const {res, status} = await fetchData('http://192.168.184.76:3000/api/login', config); 
+      const {res, status} = await fetchData(`${API_URL}/api/login`, config); 
       
       if(status === 404 || !res.status ){
         toast.error(res.message, {
@@ -55,7 +57,7 @@ const Form = () => {
         return;
       } 
       
-      toast.success('Data berhasil disimpan!', {
+      toast.success(res.message, {
           position: 'top-right',
           autoClose: 1500,
           onClose: () => {

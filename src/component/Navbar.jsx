@@ -6,25 +6,20 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="lg:pt-5">
-            <div className="lg:container w-full lg:w-3/4 md:mx-auto px-20 py-3 flex justify-between items-center bg-slate-800 text-white shadow-md md:rounded shadow"> 
-                <Link to="/" className="text-2xl font-bold">
-                    <span className="">Pandurasa Kharisma</span>
+        <nav className="w-full sticky top-0 z-50">
+            <div className="px-4 md:px-20 py-5 flex justify-between items-center text-white shadow backdrop-blur opacity-80 rounded"> 
+                <Link to="/" className="md:text-2xl font-bold">
+                    <span className="uppercase hidden md:block">Pandurasa Kharisma</span>
+                    <span className="uppercase md:hidden lg:hidden text-2xl"><img src="./public/images/logopk.png" alt="logo-pk" className="rounded-full w-10 shadow-lg shadow-slate-400" /></span>
                 </Link>
  
                 <ul className="hidden md:flex space-x-6">
                     <li>
-                        <Link to="/" className="hover:text-sky-400 transition">Home</Link>
+                        <Link to="/landing" className="hover:text-sky-400 transition">Home</Link>
                     </li>
                     <li>
-                        <Link to="/about" className="hover:text-sky-400 transition">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/services" className="hover:text-sky-400 transition">Services</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact" className="hover:text-sky-400 transition">Contact</Link>
-                    </li>
+                        <Link to="/landing/aplication" className="hover:text-sky-400 transition">Aplication</Link>
+                    </li> 
                 </ul>
  
                 <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -33,19 +28,13 @@ const Navbar = () => {
             </div>
  
             {isOpen && (
-                <ul className="md:hidden bg-slate-800 space-y-3 p-4">
+                <ul className="md:hidden backdrop-blur space-y-3 p-4 shadow-lg text-white sticky w-full top-20">
                     <li>
-                        <Link to="/" className="block py-2 hover:text-sky-400 transition" onClick={() => setIsOpen(false)}>Home</Link>
+                        <Link to="/landing" className="block py-2 hover:text-sky-400 transition" onClick={() => setIsOpen(false)}>Home</Link>
                     </li>
                     <li>
-                        <Link to="/about" className="block py-2 hover:text-sky-400 transition" onClick={() => setIsOpen(false)}>About</Link>
-                    </li>
-                    <li>
-                        <Link to="/services" className="block py-2 hover:text-sky-400 transition" onClick={() => setIsOpen(false)}>Services</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact" className="block py-2 hover:text-sky-400 transition" onClick={() => setIsOpen(false)}>Contact</Link>
-                    </li>
+                        <Link to="/aplication" className="block py-2 hover:text-sky-400 transition" onClick={() => setIsOpen(false)}>About</Link>
+                    </li> 
                 </ul>
             )}
         </nav>
