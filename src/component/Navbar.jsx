@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
+    const [isOpen, setIsOpen]       = useState(false);
+    const [darkMode, setDarkMode]   = useState(() => {
+        return localStorage.getItem("theme") === "dark";
+    });
+     useEffect(() => {
+        const isDark = darkMode === false; 
+        document.documentElement.classList.toggle("dark", !isDark); 
+        localStorage.setItem("theme", `${!isDark ? "dark" : "light"}`); 
+    }, [darkMode]);
+     
     return (
         <nav className="w-full sticky top-0 z-50">
-            <div className="px-4 md:px-20 py-5 flex justify-between items-center text-white shadow backdrop-blur opacity-80 rounded"> 
+            <div className="px-4 md:px-20 py-5 flex justify-between items-center dark:text-white text-slate-700 shadow backdrop-blur opacity-80 rounded"> 
                 <Link to="/" className="md:text-2xl font-bold">
                     <span className="uppercase hidden md:block">Pandurasa Kharisma</span>
                     <span className="uppercase md:hidden lg:hidden text-2xl"><img src="./public/images/logopk.png" alt="logo-pk" className="rounded-full w-10 shadow-lg shadow-slate-400" /></span>
@@ -19,6 +27,18 @@ const Navbar = () => {
                     </li>
                     <li>
                         <Link to="/landing/aplication" className="hover:text-sky-400 transition">Aplication</Link>
+                    </li> 
+                    <li>
+                         <input type="checkbox" className="hidden" id="toggleDark"/>
+                         <label htmlFor="toggleDark" className="hover:cursor-pointer" onClick={() => setDarkMode(!darkMode)}>
+                            <div className="flex items-center p-1 cursor-pointer" >
+                                {darkMode ? (
+                                    <SunIcon className="h-5 w-5 text-slate-300" />
+                                ) : (
+                                    <MoonIcon className="h-5 w-5 text-slate-300" />
+                                )}
+                            </div>
+                         </label>
                     </li> 
                 </ul>
  
