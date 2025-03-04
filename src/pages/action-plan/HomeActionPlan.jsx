@@ -80,7 +80,7 @@ const SideBar = () => {
                         <span className='menu-text text-ellipsis whitespace-nowrap leading-[1.467] overflow-hidden font-semibold'>Home</span>
                     </Link>
                 </li>
-                <li className='menu-header transition-opacity duration-300 ease-in-out  my-0 mx-[-5px] flex items-end text-base uppercase px-4 py-2 text-xs'>
+                <li className='menu-header transition-opacity duration-300 ease-in-out  my-0 mx-[-5px] flex items-end text-base uppercase px-4 py-2 '>
                     <span className='menu-header-text uppercase tracking-[0.4px] whitespace-nowrap text-gray-500 font-semibold'>Action Plan</span>
                 </li>
                 {lengthMap.map((item, index) => (

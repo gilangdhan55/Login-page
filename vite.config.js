@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()], 
   server: {
+      historyApiFallback: true, // Tambahin ini
       host: true,  // Agar bisa diakses pakai IP
       port: 5173,  // Bisa diganti sesuai kebutuhan
   },
@@ -22,4 +23,5 @@ export default defineConfig({
   //     }
   //   }
   // } 
+  
 })
