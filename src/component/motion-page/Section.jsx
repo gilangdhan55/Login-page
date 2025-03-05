@@ -18,7 +18,8 @@ export default function Section({ children, className, id }) {
       initial={{ scale: 0.8, opacity: 0 }}
       animate={controls}
       transition={{ duration: 0.5, ease: "easeOut" }}
-       className={`${className}`}
+      className={`${className}`}
+      id={id}
     >
       {children}
     </motion.section>
