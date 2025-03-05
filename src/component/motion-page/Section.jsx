@@ -1,6 +1,18 @@
-import { motion, useAnimation } from "framer-motion";
+import { motion,useAnimation  } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import PropTypes from "prop-types";
+
+Section.propTypes = {
+  children: PropTypes.node.isRequired, // children harus ada
+  className: PropTypes.string,
+  id: PropTypes.string,
+};
+
+const sectionVariants = {
+  hidden: { scale: 0.8, opacity: 0 },
+  visible: { scale: 1, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 export default function Section({ children, className, id }) {
   const controls = useAnimation();
@@ -8,18 +20,20 @@ export default function Section({ children, className, id }) {
 
   useEffect(() => {
     if (inView) {
-      controls.start({ scale: 1, opacity: 1 });
+      controls.start("visible");
+    } else {
+      controls.start("hidden"); // Restart animasi saat keluar viewport
     }
   }, [inView, controls]);
 
   return (
-    <motion.section
+    <motion.section 
       ref={ref}
-      initial={{ scale: 0.8, opacity: 0 }}
+      variants={sectionVariants}
+      initial="hidden"
       animate={controls}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-       className={`${className}`}
-    >
+      className={className}
+      id={id}>
       {children}
     </motion.section>
   );
