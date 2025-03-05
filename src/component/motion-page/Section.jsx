@@ -31,9 +31,10 @@ export default function Section({ children, className, id }) {
       ref={ref}
       variants={sectionVariants}
       initial="hidden"
-      animate={controls}
-      className={className}
-      id={id}>
+      animate={controls} 
+      className={className} 
+      transition={{ duration: 0.5, ease: "easeOut" }} 
+      id={id} > 
       {children}
     </motion.section>
   );

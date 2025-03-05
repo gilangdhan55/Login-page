@@ -12,10 +12,10 @@ function App() {
     <> 
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/landing" element={<LandingPage />} > 
-          <Route index element={<ContentCarousel />} />
-          <Route path="aplication" element={<ListApplication />} />
-        </Route>
+        <Route path="/landing" element={<LandingPage />} /> 
+          {/* <Route index element={<ContentCarousel />} />
+          <Route path="aplication" element={<ListApplication />} /> */}
+        {/* </Route> */}
         <Route path="/action-plan" element={<HomeActionPlan />} />
       </Routes>
     </>

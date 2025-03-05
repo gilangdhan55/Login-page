@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation"; 
 import "swiper/css/autoplay";
 import Section from "../motion-page/Section";   
+
 const cardApp = [
     'ACTION PLAN', 'PKVISIT', 'ANP', 'WMS', 'PR PO', 'POS HO', 'TELEMARKETING', 'PKVISIT ADMIN', 'TELEMARKETING', 'PKVISIT ADMIN'
 ];
@@ -42,8 +43,8 @@ const CardListApp = () => {
           <SwiperSlide key={i}
 
           >
-            <div className={`ml-3 mr-3 min-w-20 min-h-20 px-2 py-2 relative`}>
-                <div className={` shadow-lg bg-slate-200 dark:bg-white/10 min-w-20 min-h-20 overflow-hidden rounded-md flex flex-col p-3 relative`}>
+            <div className={`ml-3 mr-3 min-w-20 min-h-20 px-2 py-2 relative`}> 
+                <div className={`shadow-lg bg-slate-200 dark:bg-white/10 min-w-20 min-h-20 overflow-hidden rounded-md flex flex-col p-3 relative`}> 
                     <div className="flex mb-3 items-center gap-2 absolute top-5 w-full z-10">
                         <img className="rounded-full w-10 " src="/images/logopk.png" alt="logo-app"/>
                         <h2 className="text-2xl font-bold text-slate-500 dark:text-slate-300">{cardApp[i]}</h2>
@@ -70,8 +71,8 @@ const CardListApp = () => {
 
 const ContentCard = () => {
   return ( 
-       <div className="snap-mandatory snap-y overflow-y-scroll h-screen content-landing">
-        <Section id="home" className="pt-32 h-screen flex flex-col gap-2 min-h-20 mt-10 container mx-auto text-4xl font-bold  dark:text-slate-900 snap-start"> 
+       <div className="snap-mandatory snap-y overflow-y-scroll h-screen content-landing"> 
+        <Section id="home" className="pt-32 h-screen flex flex-col gap-2 container  min-h-20 mt-10 mx-auto text-4xl font-bold  dark:text-slate-900 snap-start">  
             <div className="max-w-3xl mx-auto text-center p-8 uppercase">
                 <h1 className="text-2xl md:text-5xl leading-snug font-bold text-gray-900 dark:text-white mb-4">
                     More than 20 years in <br /><span className="text-red-600">food </span> & <span className="text-slate-600"> beverages</span> <br /> distribution 
